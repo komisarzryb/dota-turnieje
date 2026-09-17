@@ -122,6 +122,12 @@ h1 {
   border-color: var(--red);
 }
 
+#lang-btn {
+  padding: 8px 10px;
+  min-width: 44px;
+  letter-spacing: 0.04em;
+}
+
 main {
   position: relative;
   z-index: 1;

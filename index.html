@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0e14">
-  <title>Team Spirit — Turnieje Dota 2</title>
+  <title data-i18n="title">Team Spirit — Turnieje Dota 2</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,14 +15,15 @@
       <div class="brand">
         <img id="team-logo" class="team-logo" alt="" hidden>
         <div>
-          <div class="brand-tag">Dota 2 · Turnieje</div>
+          <div class="brand-tag" data-i18n="brandTag">Dota 2 · Turnieje</div>
           <h1 id="team-name">Team Spirit</h1>
           <div id="team-meta" class="team-meta"></div>
         </div>
       </div>
       <div class="topbar-actions">
         <span id="updated" class="updated" hidden></span>
-        <button id="refresh-btn" class="btn" type="button">Odśwież</button>
+        <button id="lang-btn" class="btn" type="button">RU</button>
+        <button id="refresh-btn" class="btn" type="button" data-i18n="refresh">Odśwież</button>
       </div>
     </div>
   </header>
@@ -31,45 +32,45 @@
     <div id="status" class="status" hidden></div>
 
     <section id="live-section">
-      <h2 class="sec-title"><span class="live-dot"></span>Na żywo</h2>
+      <h2 class="sec-title"><span class="live-dot"></span><span data-i18n="live">Na żywo</span></h2>
       <div id="live-content" class="panel">
-        <div class="placeholder">Ładowanie…</div>
+        <div class="placeholder" data-i18n="load">Ładowanie…</div>
       </div>
     </section>
 
     <section id="upcoming-section">
-      <h2 class="sec-title">Nadchodzące mecze</h2>
+      <h2 class="sec-title" data-i18n="upcoming">Nadchodzące mecze</h2>
       <div id="upcoming-content" class="panel">
-        <div class="placeholder">Ładowanie…</div>
+        <div class="placeholder" data-i18n="load">Ładowanie…</div>
       </div>
     </section>
 
     <section id="results-section">
-      <h2 class="sec-title">Turnieje i wyniki</h2>
+      <h2 class="sec-title" data-i18n="results">Turnieje i wyniki</h2>
       <div id="results-content">
-        <div class="placeholder">Ładowanie…</div>
+        <div class="placeholder" data-i18n="load">Ładowanie…</div>
       </div>
     </section>
 
     <section id="recent-section">
-      <h2 class="sec-title">Ostatnie mecze</h2>
+      <h2 class="sec-title" data-i18n="recent">Ostatnie mecze</h2>
       <div id="recent-content" class="panel">
-        <div class="placeholder">Ładowanie…</div>
+        <div class="placeholder" data-i18n="load">Ładowanie…</div>
       </div>
     </section>
 
     <section id="history-section">
-      <h2 class="sec-title">Historia turniejów</h2>
+      <h2 class="sec-title" data-i18n="history">Historia turniejów</h2>
       <div id="history-content">
-        <div class="placeholder">Ładowanie…</div>
+        <div class="placeholder" data-i18n="load">Ładowanie…</div>
       </div>
     </section>
   </main>
 
   <footer class="wrap footer">
-    <p>Dane: <a href="https://www.opendota.com/teams/7119388" target="_blank" rel="noopener">OpenDota API</a> oraz
+    <p><span data-i18n="footerLead">Dane:</span> <a href="https://www.opendota.com/teams/7119388" target="_blank" rel="noopener">OpenDota API</a> <span data-i18n="footerMid">oraz</span>
       <a href="https://liquipedia.net/dota2/Team_Spirit" target="_blank" rel="noopener">Liquipedia</a>.
-      Strona nieoficjalna, niezwiązana z Valve ani Team Spirit.</p>
+      <span data-i18n="footerNote">Strona nieoficjalna, niezwiązana z Valve ani Team Spirit.</span></p>
   </footer>
 
   <script src="app.js"></script>
