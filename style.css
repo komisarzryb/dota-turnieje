@@ -387,8 +387,164 @@ section { margin-top: 30px; scroll-margin-top: 90px; }
 .footer a { color: var(--cyan); text-decoration: none; }
 .footer a:hover { text-decoration: underline; }
 
+html[data-device="mobile"] .bg-glow {
+  background: radial-gradient(60% 40% at 50% -10%, rgba(224, 52, 62, 0.12), transparent 70%);
+}
+
+html[data-device="mobile"] .footer {
+  padding-bottom: calc(26px + env(safe-area-inset-bottom));
+}
+
+@media (pointer: coarse) {
+  .btn {
+    min-height: 44px;
+  }
+  .row,
+  .match-row {
+    min-height: 44px;
+    padding: 12px 14px;
+  }
+  .live-match {
+    min-height: 64px;
+  }
+}
+
+@media (max-width: 900px) {
+  .team-meta {
+    font-size: 12px;
+  }
+  .updated {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 620px) {
-  .prize { display: none; }
-  .row-date { min-width: 74px; }
-  .tournament-card { padding: 12px; }
+  .wrap {
+    width: min(100%, 100vw);
+    padding: 0 12px;
+  }
+
+  .topbar {
+    padding: 10px 0;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .team-logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .brand-tag {
+    font-size: 10px;
+  }
+
+  .topbar-actions {
+    gap: 8px;
+  }
+
+  .updated {
+    display: none;
+  }
+
+  main {
+    padding: 16px 0 36px;
+  }
+
+  section {
+    margin-top: 22px;
+  }
+
+  .sec-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .panel {
+    padding: 12px;
+  }
+
+  .prize {
+    display: none;
+  }
+
+  .row {
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    padding: 10px 12px;
+  }
+
+  .row-date {
+    flex-basis: 100%;
+    min-width: 0;
+    font-size: 12px;
+  }
+
+  .row-title {
+    flex-basis: 100%;
+    order: 2;
+  }
+
+  .row-sub {
+    order: 3;
+  }
+
+  .place-badge {
+    margin-left: auto;
+  }
+
+  .match-row {
+    gap: 6px 10px;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .match-opp {
+    flex: 1 1 auto;
+  }
+
+  .tournament-card {
+    padding: 12px;
+  }
+
+  .tournament-name {
+    font-size: 14px;
+    flex-basis: 100%;
+  }
+
+  .match-row-list {
+    gap: 6px;
+  }
+
+  .live-match {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .live-teams {
+    flex-basis: 100%;
+  }
+
+  .footer {
+    padding: 14px 0 26px;
+  }
+}
+
+@media (max-width: 400px) {
+  .chip-tier {
+    font-size: 10px;
+  }
+
+  .row .chip-tier {
+    display: none;
+  }
+
+  .score {
+    font-size: 12px;
+  }
 }

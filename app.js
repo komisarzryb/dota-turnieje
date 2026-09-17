@@ -182,7 +182,27 @@ const DotaSite = (() => {
     return result;
   }
 
+  function detectDevice() {
+    let coarse = false;
+    let fine = false;
+    let wide = false;
+    if (window.matchMedia) {
+      coarse = window.matchMedia('(pointer: coarse)').matches;
+      fine = window.matchMedia('(pointer: fine)').matches;
+      wide = window.matchMedia('(min-width: 768px)').matches;
+    }
+    const touchPoints = navigator.maxTouchPoints || 0;
+    const touch = touchPoints > 0;
+    const mobile = (coarse && !fine) || (!wide && touch);
+    const root = document.documentElement;
+    root.dataset.device = mobile ? 'mobile' : 'desktop';
+    root.dataset.touch = touch || coarse ? 'yes' : 'no';
+    return mobile;
+  }
+
   function init() {
+    const isMobile = detectDevice();
+    const liveRefreshMs = isMobile ? LIVE_REFRESH_MS * 2 : LIVE_REFRESH_MS;
     const $ = (sel) => document.querySelector(sel);
     const teamLogo = $('#team-logo');
     const teamName = $('#team-name');
@@ -409,16 +429,21 @@ const DotaSite = (() => {
         return;
       }
       const cutoff = Date.now() / 1000 - 730 * 86400;
-      const recent = groups.filter((g) => g.ongoing || g.last.start_time >= cutoff);
-      const older = groups.filter((g) => !g.ongoing && g.last.start_time < cutoff);
+      const isOlder = (g) => !g.ongoing && g.last.start_time < cutoff;
+      let recent = groups.filter((g) => !isOlder(g));
+      let older = groups.filter(isOlder);
+      if (isMobile && recent.length > 8) {
+        older = recent.slice(8).concat(older);
+        recent = recent.slice(0, 8);
+      }
       const container = el('div', { class: 'tournament-list' }, []);
       historyContent.appendChild(container);
 
       function leagueCard(lg) {
         const dateRange = fmtDate(lg.first.start_time) + ' – ' + fmtDate(lg.last.start_time);
         const record = lg.wins + 'W : ' + lg.losses + 'L';
-        const shown = lg.matches.slice(0, 6);
-        const rest = lg.matches.slice(6);
+        const shown = lg.matches.slice(0, isMobile ? 4 : 6);
+        const rest = lg.matches.slice(isMobile ? 4 : 6);
         return el('div', { class: 'tournament-card' }, [
           el('div', { class: 'tournament-head' }, [
             el('span', { class: 'score ' + (lg.wins >= lg.losses ? 'win' : 'loss') }, record),
@@ -560,11 +585,11 @@ const DotaSite = (() => {
     loadAll(true);
 
     if (typeof setInterval === 'function') {
-      setInterval(refreshLiveOnly, LIVE_REFRESH_MS);
+      setInterval(refreshLiveOnly, liveRefreshMs);
     }
   }
 
-  return { init, parseLiquipedia, groupMatchesByLeague, teamWon };
+  return { init, parseLiquipedia, groupMatchesByLeague, teamWon, detectDevice };
 })();
 
 if (typeof document !== 'undefined' && typeof window !== 'undefined') {
